@@ -402,6 +402,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputSensitivity: 100
   FPSCamera: {fileID: 963194228}
+  LookXInput: Mouse X
+  LookYInput: Mouse Y
 --- !u!1 &1197031276
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +472,10 @@ MonoBehaviour:
   PlayerSpeed: 12
   WorldGravity: -9.81
   JumpHeight: 3
+  MoveVerticalInput: Vertical
+  MoveHorizontalInput: Horizontal
+  JumpInput: Jump
+  AllowDoubleJump: 1
 --- !u!114 &1197031280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +495,7 @@ MonoBehaviour:
   camCrouchingHeight: 0
   characterController: {fileID: 1197031277}
   FPSCamera: {fileID: 963194228}
+  CrouchInput: Fire1
 --- !u!1 &1383637696
 GameObject:
   m_ObjectHideFlags: 0

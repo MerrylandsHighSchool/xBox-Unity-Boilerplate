@@ -8,6 +8,8 @@ public class FPSLook : MonoBehaviour
     public float InputSensitivity = 100f;
     public Transform FPSCamera;
     float FPSRotation = 0f;
+    public string LookXInput = "Mouse X";
+    public string LookYInput = "Mouse Y";
 
     void Start()
     {
@@ -16,8 +18,8 @@ public class FPSLook : MonoBehaviour
 
     void Update()
     {
-        float LookX = Input.GetAxis("Mouse X") * InputSensitivity * Time.deltaTime;
-        float LookY = Input.GetAxis("Mouse Y") * InputSensitivity * Time.deltaTime;
+        float LookX = Input.GetAxis("LookXInput") * InputSensitivity * Time.deltaTime;
+        float LookY = Input.GetAxis("LookYInput") * InputSensitivity * Time.deltaTime;
         FPSCamera.Rotate(Vector3.up * LookX);
         FPSRotation -= LookY;
         FPSRotation = Mathf.Clamp(FPSRotation, -90f, 90f);

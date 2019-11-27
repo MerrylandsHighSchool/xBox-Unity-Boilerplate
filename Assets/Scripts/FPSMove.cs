@@ -9,6 +9,11 @@ public class FPSMove : MonoBehaviour
     Vector3 PhysicsVelocity;
     public float WorldGravity = -9.81f;
     public float JumpHeight = 3f;
+    public string MoveVerticalInput = "Vertical";
+    public string MoveHorizontalInput = "Horizontal";
+    public string JumpInput = "Jump";
+    private bool IsJumping = false;
+    public bool AllowDoubleJump = true;
 
     void Update()
     {
@@ -18,11 +23,21 @@ public class FPSMove : MonoBehaviour
             FPSController.slopeLimit = 45.0f;
             PhysicsVelocity.y = -2f;
         }
-        float MoveX = Input.GetAxisRaw("Horizontal");
-        float MoveY = Input.GetAxisRaw("Vertical");
+        float MoveX = Input.GetAxisRaw(MoveHorizontalInput);
+        float MoveY = Input.GetAxisRaw(MoveVerticalInput);
         Vector3 MoveFPS = Vector3.Normalize(transform.right * MoveX + transform.forward * MoveY);
         FPSController.Move(MoveFPS * PlayerSpeed * Time.deltaTime);
-        if(Input.GetButtonDown("Jump") && FPSController.isGrounded)
+        if (IsJumping && FPSController.isGrounded)
+        {
+            IsJumping = false;
+        }
+        if (Input.GetButtonDown(JumpInput) && FPSController.isGrounded)
+        {
+            IsJumping = true;
+            FPSController.slopeLimit = 100.0f;
+            PhysicsVelocity.y = Mathf.Sqrt(JumpHeight * -2f * WorldGravity);
+        }
+        if (AllowDoubleJump && Input.GetButtonDown(JumpInput) && IsJumping)
         {
             FPSController.slopeLimit = 100.0f;
             PhysicsVelocity.y = Mathf.Sqrt(JumpHeight * -2f * WorldGravity);

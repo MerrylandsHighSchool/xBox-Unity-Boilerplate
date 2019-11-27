@@ -12,12 +12,13 @@ public class CrouchController : MonoBehaviour
     private bool isCrouchTransitionInProgress = false;
     public CharacterController characterController;
     public Transform FPSCamera;
+    public string CrouchInput = "Fire";
 
     private bool isCrouching = false;
 
     private void FixedUpdate()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown(CrouchInput))
         {
             isCrouchTransitionInProgress = true;
 
