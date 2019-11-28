@@ -13,13 +13,13 @@ public class FPSLook : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+       Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
-        float LookX = Input.GetAxis("LookXInput") * InputSensitivity * Time.deltaTime;
-        float LookY = Input.GetAxis("LookYInput") * InputSensitivity * Time.deltaTime;
+        float LookX = Input.GetAxis(LookXInput) * InputSensitivity * Time.deltaTime;
+        float LookY = Input.GetAxis(LookYInput) * InputSensitivity * Time.deltaTime;
         FPSCamera.Rotate(Vector3.up * LookX);
         FPSRotation -= LookY;
         FPSRotation = Mathf.Clamp(FPSRotation, -90f, 90f);
