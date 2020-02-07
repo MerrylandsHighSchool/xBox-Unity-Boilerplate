@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrouchController : MonoBehaviour
 {
-    public float speed;
+    public float speed = 50;
     public float crouchingHeight;
     public float standingHeight;
     public float camStandingHeight;
@@ -36,21 +36,21 @@ public class CrouchController : MonoBehaviour
             }
         }
 
-        if (isCrouchTransitionInProgress)
-        {
-            Vector3 camPosition = FPSCamera.position;
-            Vector3 standCamPosition = new Vector3(0f, camStandingHeight, 0f);
-            Vector3 crouchCamPosition = new Vector3(0f, camCrouchingHeight, 0f);
+              if (isCrouchTransitionInProgress)
+              {
+                  Vector3 camPosition = FPSCamera.position;
+                  Vector3 standCamPosition = new Vector3(0f, camStandingHeight, 0f);
+                  Vector3 crouchCamPosition = new Vector3(0f, camCrouchingHeight, 0f);
 
-            if (isCrouching)
-            {
-                CamLerpToPosition(camPosition, crouchCamPosition);
-            }
-            else
-            {
-                CamLerpToPosition(camPosition, standCamPosition);
-            }
-        }
+                  if (isCrouching)
+                  {
+                      CamLerpToPosition(camPosition, crouchCamPosition);
+                  }
+                  else
+                  {
+                      CamLerpToPosition(camPosition, standCamPosition);
+                  }
+              }
     }
 
     private void CamLerpToPosition(Vector3 currentPosition, Vector3 targetPosition)
