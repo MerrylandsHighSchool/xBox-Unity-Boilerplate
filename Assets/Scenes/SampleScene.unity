@@ -465,7 +465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197031276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
@@ -488,17 +488,19 @@ MonoBehaviour:
   FPSController: {fileID: 1197031277}
   PlayerSpeed: 12
   WorldGravity: -9.81
-  JumpHeight: 3
-  DoubleJumpHeight: 2.5
+  JumpHeight: 4
   MoveVerticalInput: Vertical
   MoveHorizontalInput: Horizontal
-  JumpInput: Jump
+  JumpInput: ButtonA
   GroundCheck: {fileID: 1460514554}
   GroundDistance: 0.4
   GroundMask:
     serializedVersion: 2
     m_Bits: 256
   AllowDoubleJump: 1
+  CrouchInput: ButtonB
+  crouchingHeight: 1.9
+  characterController: {fileID: 1197031277}
 --- !u!114 &1197031280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,6 +519,7 @@ MonoBehaviour:
   camStandingHeight: 1.6
   camCrouchingHeight: 0.8
   characterController: {fileID: 1197031277}
+  characterControllerTransform: {fileID: 1197031278}
   FPSCamera: {fileID: 963194228}
   CrouchInput: ButtonB
 --- !u!114 &1197031281

@@ -10,6 +10,7 @@ public class CrouchController : MonoBehaviour
     public float camStandingHeight;
     public float camCrouchingHeight;
     private bool isCrouchTransitionInProgress = false;
+    public Transform characterControllerTransform;
     public CharacterController characterController;
     public Transform FPSCamera;
     public string CrouchInput = "Fire";
@@ -27,7 +28,9 @@ public class CrouchController : MonoBehaviour
                 isCrouching = false;
                 characterController.height = standingHeight;
                 characterController.center = new Vector3(0, 1.0f, 0);
-            }
+                float newYPosition = Mathf.RoundToInt((float)characterControllerTransform.position.y + 0.1f);
+                characterControllerTransform.position = new Vector3(characterControllerTransform.position.x, newYPosition, characterControllerTransform.position.z);
+}
             else
             {
                 isCrouching = true;
@@ -36,21 +39,21 @@ public class CrouchController : MonoBehaviour
             }
         }
 
-              if (isCrouchTransitionInProgress)
-              {
-                  Vector3 camPosition = FPSCamera.position;
-                  Vector3 standCamPosition = new Vector3(0f, camStandingHeight, 0f);
-                  Vector3 crouchCamPosition = new Vector3(0f, camCrouchingHeight, 0f);
+        if (isCrouchTransitionInProgress)
+        {
+            Vector3 camPosition = FPSCamera.position;
+            Vector3 standCamPosition = new Vector3(0f, camStandingHeight, 0f);
+            Vector3 crouchCamPosition = new Vector3(0f, camCrouchingHeight, 0f);
 
-                  if (isCrouching)
-                  {
-                      CamLerpToPosition(camPosition, crouchCamPosition);
-                  }
-                  else
-                  {
-                      CamLerpToPosition(camPosition, standCamPosition);
-                  }
-              }
+            if (isCrouching)
+            {
+                CamLerpToPosition(camPosition, crouchCamPosition);
+            }
+            else
+            {
+                CamLerpToPosition(camPosition, standCamPosition);
+            }
+        }
     }
 
     private void CamLerpToPosition(Vector3 currentPosition, Vector3 targetPosition)

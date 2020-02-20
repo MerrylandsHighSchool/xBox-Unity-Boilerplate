@@ -8,17 +8,21 @@ public class FPSMove : MonoBehaviour
     public float PlayerSpeed = 12f;
     Vector3 PhysicsVelocity;
     public float WorldGravity = -9.81f;
-    public float JumpHeight = 5f;
-    public float DoubleJumpHeight = 2.5f;
+    public float JumpHeight = 4f;
     public string MoveVerticalInput = "Vertical";
     public string MoveHorizontalInput = "Horizontal";
     public string JumpInput = "Jump";
     public Transform GroundCheck;
     public float GroundDistance = 0.4f;
     public LayerMask GroundMask;
-    bool IsGrounded;
+    bool IsGrounded = true;
+    bool IsJumping = false;
     bool IsDoubleJumping = false;
     public bool AllowDoubleJump = true;
+
+    public string CrouchInput = "ButtonB";
+    public float crouchingHeight = 1.9f;
+    public CharacterController characterController;
 
     void Update()
     {
@@ -29,27 +33,35 @@ public class FPSMove : MonoBehaviour
             {
                 FPSController.slopeLimit = 45.0f;
                 PhysicsVelocity.y = -2f;
+                Debug.Log(IsGrounded);
+                IsDoubleJumping = false;
+                IsJumping = false;
             }
             float MoveX = Input.GetAxisRaw(MoveVerticalInput);
             float MoveY = Input.GetAxisRaw(MoveHorizontalInput);
             Vector3 MoveFPS = Vector3.Normalize(transform.right * MoveX + transform.forward * MoveY);
             FPSController.Move(MoveFPS * PlayerSpeed * Time.deltaTime);
 
-
-            if (!IsDoubleJumping && !IsGrounded && AllowDoubleJump && Input.GetButtonDown(JumpInput))
+            /*  if (Input.GetButtonDown(CrouchInput) && IsGrounded)
+              {
+                  characterController.height = crouchingHeight;
+                  Debug.Log("Crouched");
+              } */
+            if (IsJumping && !IsDoubleJumping && AllowDoubleJump && Input.GetButtonDown(JumpInput))
             {
-                Debug.Log("Double Jumping");
+                Debug.Log("Is Double Jumping");
                 FPSController.slopeLimit = 100.0f;
-                PhysicsVelocity.y = Mathf.Sqrt(DoubleJumpHeight * -2f * WorldGravity);
+                PhysicsVelocity.y = Mathf.Sqrt(JumpHeight * -4f * WorldGravity);
                 IsDoubleJumping = true;
-            }
-            if (Input.GetButtonDown(JumpInput) && IsGrounded)
+            } else if (!IsJumping && Input.GetButtonDown(JumpInput))
             {
-                Debug.Log("Jumping");
+                Debug.Log("Is Jumping");
                 FPSController.slopeLimit = 100.0f;
                 PhysicsVelocity.y = Mathf.Sqrt(JumpHeight * -2f * WorldGravity);
                 IsDoubleJumping = false;
+                IsJumping = true;
             }
+
             PhysicsVelocity.y += WorldGravity * Time.deltaTime;
             FPSController.Move(PhysicsVelocity * Time.deltaTime);
         }
