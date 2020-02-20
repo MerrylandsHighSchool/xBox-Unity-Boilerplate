@@ -41,9 +41,9 @@ public class CrouchController : MonoBehaviour
 
         if (isCrouchTransitionInProgress)
         {
-            Vector3 camPosition = FPSCamera.position;
-            Vector3 standCamPosition = new Vector3(0f, camStandingHeight, 0f);
-            Vector3 crouchCamPosition = new Vector3(0f, camCrouchingHeight, 0f);
+            Vector3 camPosition = FPSCamera.localPosition;
+            Vector3 standCamPosition = new Vector3(0, camStandingHeight, 0);
+            Vector3 crouchCamPosition = new Vector3(0, camCrouchingHeight, 0);
 
             if (isCrouching)
             {
@@ -58,9 +58,9 @@ public class CrouchController : MonoBehaviour
 
     private void CamLerpToPosition(Vector3 currentPosition, Vector3 targetPosition)
     {
-        FPSCamera.position = Vector3.Lerp(currentPosition, targetPosition, Time.fixedDeltaTime * speed);
+        FPSCamera.localPosition = Vector3.Lerp(currentPosition, targetPosition, Time.fixedDeltaTime * speed);
 
-        if (Mathf.Abs(FPSCamera.position.y - targetPosition.y) < 0.01f)
+        if (Mathf.Abs(FPSCamera.localPosition.y - targetPosition.y) < 0.01f)
         {
             isCrouchTransitionInProgress = false;
             Debug.Log("Reached " + (isCrouching ? "crouching" : "standing") + " height");

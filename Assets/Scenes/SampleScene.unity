@@ -518,8 +518,8 @@ MonoBehaviour:
   standingHeight: 3.8
   camStandingHeight: 1.6
   camCrouchingHeight: 0.8
-  characterController: {fileID: 1197031277}
   characterControllerTransform: {fileID: 1197031278}
+  characterController: {fileID: 1197031277}
   FPSCamera: {fileID: 963194228}
   CrouchInput: ButtonB
 --- !u!114 &1197031281

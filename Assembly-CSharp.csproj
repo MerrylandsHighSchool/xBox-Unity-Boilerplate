@@ -56,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CrouchController.cs" />
-     <Compile Include="Assets\Scripts\CrouchController2.cs" />
      <Compile Include="Assets\Scripts\FPSDead.cs" />
      <Compile Include="Assets\Scripts\FPSLook.cs" />
      <Compile Include="Assets\Scripts\FPSMove.cs" />
@@ -639,12 +638,6 @@
  <Reference Include="Boo.Lang">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.13f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{7337E312-58D3-EBF4-5D0F-70F27D08F99C}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
